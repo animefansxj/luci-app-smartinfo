@@ -1,0 +1,11 @@
+
+config smartinfo 'main'
+	option enabled '1'
+	list device '/dev/sda'
+	option log_enabled '1'
+	option log_path '/disk/.Program/DiskLog'
+	option time_unit 'minute'
+	option time_step '8'
+	option touch_enabled '1'
+	option touch_path '/tmp'
+
