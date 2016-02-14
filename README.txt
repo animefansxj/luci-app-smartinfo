@@ -30,12 +30,13 @@ VERSION 2.0
 
 
 授权:
-    此程序的当前版本采用GNU GPL V3协议授权，请务必
-保持分支版本的代码公开。
+    此程序的当前版本采用GNU GPL V3协议授权，请务
+必保持分支版本的代码公开。
     你可以在 http://www.gnu.org/licenses/licenses.html
 取得授权协议的副本。
 
 
 发布:
-    除上述站点外，所有资源也通过github以及以下站点发布:
+    除上述站点外，所有资源也通过github以及以下站
+点发布:
       http://pan.baidu.com/s/1bnw7hCj#path=%252FSoftware%252FRouter
