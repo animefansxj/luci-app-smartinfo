@@ -12,19 +12,11 @@ do_smart_check() {
   # 看看指定的设备是否在线
   if [ -b $1 ]; then
     # 如果在线，看看是否支持S.M.A.R.T。支持，则对其执行SMART检测，判断输出是否包含PASSED
-    result=`/usr/sbin/smartctl -H $1`
-    case $? in
-      "1")
+    result=`/usr/sbin/smartctl -d sat -H $1`
+    if [ $? -eq "2" ]; then
         # 不支持S.M.A.R.T
         return 3
-      ;;
-      "2")
-        # 设备离线
-        return 2
-      ;;
-      *)
-      ;;
-    esac
+    fi
     
     result=`echo $result | grep -c PASSED`
     if [ $result -ne 0 ]; then
@@ -44,21 +36,12 @@ do_simple_smart_check() {
   # 看看指定的设备是否在线
   if [ -b $1 ]; then
     # 如果在线，则对其执行SMART检测，判断输出是否包含PASSED
-    result=`/usr/sbin/smartctl -H $1`
-    case $? in
-      "1")
+    result=`/usr/sbin/smartctl -d sat -H $1`
+    if [ $? -eq "2" ]; then
         # 不支持S.M.A.R.T
         echo "$1:Unsupported"
         exit 0
-      ;;
-      "2")
-        # 设备离线
-        echo "$1:Offline"
-        exit 0
-      ;;
-      *)
-      ;;
-    esac
+    fi
     
     result=`echo $result | grep -c PASSED`
     if [ $result -ne 0 ]; then

@@ -30,7 +30,15 @@
             tr.insertCell(-1).innerHTML = st[i].status;
 					}
 					
-
+					if(st[i].status == 'Failed' || st[i].status == 'OK')
+					{
+            td = tr.insertCell(-1);
+            td.innerHTML = "<button type='button' onclick='show_detail(\"" + st[i].name + "\");'> <%:Show%> </button>"
+					}
+					else
+					{
+            tr.insertCell(-1).innerHTML = "---";
+					}
 				}
 
 				if( tb.rows.length == 1 )
@@ -47,6 +55,23 @@
 	);
 //]]></script>
 
+<script type="text/javascript">
+  function show_detail(dev)
+  {
+  
+    XHR.get('<%=luci.dispatcher.build_url("admin", "services", "smartinfo", "run")%>/' + dev, null,
+      function(x, st)
+			{
+        if (st)
+					{
+            alert(st.out);
+          }
+      }
+    )
+
+  }
+</script>
+
 <fieldset class="cbi-section">
 	<legend><%:S.M.A.R.T Status%></legend>
 	<table class="cbi-section-table" id="smart_status_table">
@@ -55,6 +80,7 @@
 			<th class="cbi-section-table-cell"><%:Model%></th>
 			<th class="cbi-section-table-cell"><%:Size%></th>
 			<th class="cbi-section-table-cell"><%:Status%></th>
+			<th class="cbi-section-table-cell"><%:Detail%></th>
 		</tr>
 		<tr class="cbi-section-table-row">
 			<td colspan="4"><em><br /><%:Collecting data...%></em></td>

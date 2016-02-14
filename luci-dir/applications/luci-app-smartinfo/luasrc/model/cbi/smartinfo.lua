@@ -25,7 +25,7 @@ s.anonymous=true
 m:section(SimpleSection).template="smartinfo/smart_status"
 
 s:tab("general",translate("Global"))
---s:tab("status",translate("Status"))
+--s:tab("detail",translate("Detail"))
 
 enable=s:taboption("general",Flag,"enabled",translate("Enabled"))
 enable.rmempty=false
@@ -79,8 +79,6 @@ for d in nixio.fs.glob("/dev/sd?") do
 	device_model="%s %s" % {nixio.fs.readfile("/sys/class/block/%s/device/vendor" % device_name), nixio.fs.readfile("/sys/class/block/%s/device/model" % device_name)}
 	devices:value(d, "%s: %s" % {device_name, device_model})
 end
-
-
 
 
 return m

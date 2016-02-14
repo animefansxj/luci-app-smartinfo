@@ -27,6 +27,8 @@ function index()
 	page.dependent=true
 
 	entry({"admin","services","smartinfo","status"}, call("smart_status")).leaf = true
+	entry({"admin","services","smartinfo","run"},call("run_smart")).leaf=true
+
 end
 
 
@@ -68,3 +70,16 @@ function smart_status()
   end
 end
 
+function run_smart(dev)
+  local cmd = io.popen("smartctl --attributes -d sat /dev/%s" % dev)
+  if cmd then
+    local report = {}
+    local ln = cmd:read("*all")
+    report = {
+                out = ln
+              }
+    cmd:close()
+    luci.http.prepare_content("application/json")
+    luci.http.write_json(report)
+  end
+end
