@@ -25,9 +25,11 @@ function index()
 	local page = entry({"admin","services","smartinfo"},cbi("smartinfo"),_("S.M.A.R.T Info"))
 	page.i18n="smartinfo"
 	page.dependent=true
+	entry({"admin","services","smartinfo","smartdetail"},call("smart_detail")).leaf = true
 
 	entry({"admin","services","smartinfo","status"}, call("smart_status")).leaf = true
 	entry({"admin","services","smartinfo","run"},call("run_smart")).leaf=true
+	entry({"admin","services","smartinfo","smartattr"},call("smart_attr")).leaf=true
 
 end
 
@@ -82,4 +84,42 @@ function run_smart(dev)
     luci.http.prepare_content("application/json")
     luci.http.write_json(report)
   end
+end
+
+function smart_detail(dev)
+  luci.template.render("smartinfo/smart_detail", {dev=dev})
+end
+
+function smart_attr(dev)
+  local cmd = io.popen("smartctl --attributes -d sat /dev/%s" % dev)
+  if cmd then
+    local attr = { }
+    while true do
+      local ln = cmd:read("*l")
+      if not ln then
+        break
+      elseif ln:match("^.*%d+%s+.+%s+.+%s+.+%s+.+%s+.+%s+.+%s+.+%s+.+%s+.+") then
+        local id,attrbute,flag,value,worst,thresh,type,updated,raw = ln:match("^%s*(%d+)%s+([%a%p]+)%s+(%w+)%s+(%d+)%s+(%d+)%s+(%d+)%s+([%a%p]+)%s+(%a+)%s+[%w%p]+%s+(.+)")
+
+        --if name and status then
+            attr[#attr+1]= {
+              id = id,
+              attrbute = attrbute,
+              flag  = flag,
+              value = value,
+              worst = worst,
+              thresh  = thresh,
+              type = type,
+              updated = updated,
+              raw  = raw
+            }
+        --end
+      end
+    end
+  
+  cmd:close()
+  luci.http.prepare_content("application/json")
+  luci.http.write_json(attr)
+  end
+
 end

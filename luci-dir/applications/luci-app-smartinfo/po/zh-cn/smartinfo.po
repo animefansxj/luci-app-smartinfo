@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-02-12 20:45+0800\n"
-"PO-Revision-Date: 2016-02-12 21:20+0800\n"
+"PO-Revision-Date: 2016-02-16 21:20+0800\n"
 "Last-Translator: 穿越蓝天 < admin@nvacg.com , af_xj@hotmail.com >\n"
 "Language: cn\n"
 "MIME-Version: 1.0\n"
@@ -78,3 +78,39 @@ msgstr "详细"
 
 msgid "Show"
 msgstr "查看"
+
+msgid "Global"
+msgstr "全局"
+
+msgid "No Attrbute to display."
+msgstr "没有可显示的属性"
+
+msgid "S.M.A.R.T Attrbutes"
+msgstr "S.M.A.R.T 属性"
+
+msgid "ID"
+msgstr "ID"
+
+msgid "Attrbute"
+msgstr "属性名称"
+
+msgid "Flag"
+msgstr "标记"
+
+msgid "Value"
+msgstr "值"
+
+msgid "Worst"
+msgstr "最坏"
+
+msgid "Thresh"
+msgstr "临界值"
+
+msgid "Type"
+msgstr "类型"
+
+msgid "Updated"
+msgstr "更新"
+
+msgid "Raw"
+msgstr "原始值"
