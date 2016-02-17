@@ -42,8 +42,8 @@ function smart_status()
       local ln = cmd:read("*l")
       if not ln then
         break
-      elseif ln:match("^.+:.+") then
-        local name,status = ln:match("^.+/(.+):(.+)")
+      elseif ln:match("^/%l+/%l+:%a+") then
+        local name,status = ln:match("^/%l+/(%l+):(%a+)")
         local model,size
         
         if (status=="OK" or status=="Failed" or status=="Unsupported") then
@@ -63,6 +63,8 @@ function smart_status()
               status  = status
             }
         end
+      else
+      
       end
     end
   
@@ -101,19 +103,24 @@ function smart_attr(dev)
       elseif ln:match("^.*%d+%s+.+%s+.+%s+.+%s+.+%s+.+%s+.+%s+.+%s+.+%s+.+") then
         local id,attrbute,flag,value,worst,thresh,type,updated,raw = ln:match("^%s*(%d+)%s+([%a%p]+)%s+(%w+)%s+(%d+)%s+(%d+)%s+(%d+)%s+([%a%p]+)%s+(%a+)%s+[%w%p]+%s+(.+)")
 
-        --if name and status then
-            attr[#attr+1]= {
-              id = id,
-              attrbute = attrbute,
-              flag  = flag,
-              value = value,
-              worst = worst,
-              thresh  = thresh,
-              type = type,
-              updated = updated,
-              raw  = raw
-            }
-        --end
+        id= "%x" % id
+        if not id:match("^%w%w") then
+          id = "0%s" % id
+        end
+
+        attr[#attr+1]= {
+            id = id:upper(),
+            attrbute = attrbute,
+            flag  = flag,
+            value = value,
+            worst = worst,
+            thresh  = thresh,
+            type = type,
+            updated = updated,
+            raw  = raw
+          }
+      else
+      
       end
     end
   

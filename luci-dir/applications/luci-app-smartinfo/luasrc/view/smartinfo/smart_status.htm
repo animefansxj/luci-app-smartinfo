@@ -33,7 +33,7 @@
 					if(st[i].status == 'Failed' || st[i].status == 'OK')
 					{
             td = tr.insertCell(-1);
-            td.innerHTML = "<button type='button' onclick='show_detail(\"" + st[i].name + "\");'> <%:Show%> </button>"
+            td.innerHTML = "<input class='cbi-button cbi-button-find' type='button' value=' <%:Show%> ' onclick='show_detail(\"" + st[i].name + "\");' />"
 					}
 					else
 					{
