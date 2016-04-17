@@ -63,7 +63,7 @@ log_path.template="smartinfo/detail_end_value"
 log_path.placeholder="/tmp/log"
 log_path.rmempty=false
 
-touch_enable=s:taboption("general",Flag,"touch_enabled",translate("Touch a file when disk fail"))
+touch_enable=s:taboption("general",Flag,"touch_enabled",translate("Touch a warning file when disk fail"))
 touch_enable.template="smartinfo/detail_begin_flag"
 touch_enable.rmempty=false
 touch_path=s:taboption("general",Value,"touch_path",translate("at"))

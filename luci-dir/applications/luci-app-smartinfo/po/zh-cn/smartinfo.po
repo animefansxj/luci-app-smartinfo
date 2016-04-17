@@ -49,8 +49,8 @@ msgstr "记录到文件"
 msgid "at"
 msgstr "位于"
 
-msgid "Touch a file when disk fail"
-msgstr "故障时生成空文件"
+msgid "Touch a warning file when disk fail"
+msgstr "故障时生成示警文件"
 
 msgid "Devices to monitor"
 msgstr "监控这些设备"
